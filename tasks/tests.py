@@ -118,7 +118,7 @@ class TaskTests(BaseAPITestCase):
         data = self.data('Test Update')
         task = Task.objects.create(**data)
         url = reverse('task-detail', args=[task.id])
-        updated_data = self.data(title='Title Updated', status='done', description='Description Updated', priority=2, due_date='2099-09-01', category='User Story')
+        updated_data = self.data(title='Title Updated', status='done', description='Description Updated', priority=2, due_date='2099-09-01', category='User Story', subtasks=[{ 'done': False, 'subtask' : 'Test Subtask' }])
         response = self.client.put(url, updated_data, format='json')
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
