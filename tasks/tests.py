@@ -2,8 +2,7 @@ from django.test import TestCase
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.urls import reverse
-from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
+from users.models import CustomUser
 from .models import Task
 
 class TaskModelTest(TestCase):  
@@ -16,7 +15,7 @@ class BaseAPITestCase(APITestCase):
         self.client = APIClient()
 
     def authenticate(self):
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.user = CustomUser.objects.create_user(username='testuser', password='testpassword')
         self.client.login(username='testuser', password='testpassword')
         
 class TaskTests(BaseAPITestCase):
