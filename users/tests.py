@@ -138,3 +138,21 @@ class CustomUserViewSetTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(CustomUser.objects.count(), 2)
         self.assertEqual(CustomUser.objects.get(id=2), self.user2)
+        
+        
+class LoginViewTests(APITestCase):
+    
+    def setUp(self):
+        self.client = APIClient()
+        self.user = CustomUser.objects.create_user(username='testuser', email='test@mail.de', password='testpassword')
+    
+    def test_login_success(self):
+        url = reverse('login')
+        data = {
+            'username':'testuser', 'password':'testpassword'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('token', response.data)
+        self.assertEqual(response.data['email'], self.user.email)
+        
