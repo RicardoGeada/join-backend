@@ -15,8 +15,8 @@ class BaseAPITestCase(APITestCase):
         self.client = APIClient()
 
     def authenticate(self):
-        self.user = CustomUser.objects.create_user(username='testuser', password='testpassword')
-        self.client.login(username='testuser', password='testpassword')
+        self.user = CustomUser.objects.create_user(username='testuser', password='testpassword', email='test@mail.de')
+        self.client.login(email='test@mail.de', password='testpassword')
         
 class TaskTests(BaseAPITestCase):
     
@@ -64,7 +64,7 @@ class TaskTests(BaseAPITestCase):
         # unauthorized attempt
         self.client.logout()
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
        
         
     def test_get_tasks(self):
@@ -85,7 +85,7 @@ class TaskTests(BaseAPITestCase):
         # unauthorized attempt
         self.client.logout()
         response = self.client.get(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
        
         
     def test_get_task_detail(self):
@@ -105,7 +105,7 @@ class TaskTests(BaseAPITestCase):
         # unauthorized attempt
         self.client.logout()
         response = self.client.get(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
         
     def test_update_task(self):
@@ -126,7 +126,7 @@ class TaskTests(BaseAPITestCase):
         # unauthorized attempt
         self.client.logout()
         response = self.client.put(url, updated_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
         
     def test_partial_update_task(self):
@@ -157,7 +157,7 @@ class TaskTests(BaseAPITestCase):
         # unauthorized attempt
         self.client.logout()
         response = self.client.patch(url, partial_updated_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
 
     def test_delete_task(self):
@@ -178,6 +178,6 @@ class TaskTests(BaseAPITestCase):
         self.client.logout()
         task = Task.objects.create(**data)
         response = self.client.delete(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
         

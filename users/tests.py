@@ -3,6 +3,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.urls import reverse
 from .models import CustomUser
+from rest_framework.authtoken.models import Token
 
 # Create your tests here.
 class UserModelTest(TestCase):
@@ -16,7 +17,7 @@ class CustomUserViewSetTests(APITestCase):
     def setUp(self):
         self.user1 = CustomUser.objects.create_user(username='user1', password='password1', email='user1@example.com')
         self.user2 = CustomUser.objects.create_user(username='user2', password='password2', email='user2@example.com')
-        self.client.login(username='user1', password='password1')
+        self.client.login(email='user1@example.com', password='password1')
     
     def test_cant_create_user(self):
         """
@@ -149,10 +150,52 @@ class LoginViewTests(APITestCase):
     def test_login_success(self):
         url = reverse('login')
         data = {
-            'username':'testuser', 'password':'testpassword'
+            'email':'test@mail.de', 'password':'testpassword'
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('token', response.data)
         self.assertEqual(response.data['email'], self.user.email)
         
+        
+    def test_cant_login_with_username_password(self):
+        url = reverse('login')
+        data = {
+            'username':'testuser', 'password':'wrongpassword'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertNotIn('token', response.data)    
+        
+        
+    def test_login_failure(self):
+        url = reverse('login')
+        data = {
+            'email':'test@mail.de', 'password':'wrongpassword'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertNotIn('token', response.data)
+        
+        
+    def test_token_creation(self):    
+        self.assertEqual(Token.objects.count(), 0)
+        url = reverse('login')
+        data = {
+            'email':'test@mail.de', 'password':'testpassword'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Token.objects.count(), 1)
+        
+        
+    def test_existing_token(self):  
+        token = Token.objects.create(user=self.user)  
+        url = reverse('login')
+        data = {
+            'email':'test@mail.de', 'password':'testpassword'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['token'], token.key)
+        self.assertEqual(Token.objects.count(), 1)
