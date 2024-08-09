@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from .permissions import IsSelfOrReadOnly
 from rest_framework.exceptions import PermissionDenied
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.generics import CreateAPIView
 
-from .serializers import CustomUserSerializer , CustomAuthTokenSerializer
+from .serializers import CustomUserSerializer , CustomAuthTokenSerializer, RegisterSerializer
 from .models import CustomUser
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -34,3 +35,8 @@ class LoginView(ObtainAuthToken):
             'token': token.key,
             'email': user.email
         })
+        
+
+class RegisterView(CreateAPIView):
+    serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]

@@ -2,7 +2,7 @@
 from rest_framework import serializers
 from .models import CustomUser
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from django.utils.translation import gettext_lazy as _
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -60,3 +60,21 @@ class CustomAuthTokenSerializer(serializers.Serializer):
         attrs['user'] = user
         return attrs
 
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    
+    class Meta: 
+        model = CustomUser
+        fields = ['username', 'email', 'password']
+        extra_kwargs = {'password' : {'write_only' : True}}
+      
+  
+    def create(self, validated_data):
+        username = validated_data.get('username')
+        email = validated_data.get('email')
+        password = validated_data.get('password')
+        user = CustomUser.objects.create_user(email=email, password=password, username=username)
+        return user
+    
+    

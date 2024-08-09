@@ -199,3 +199,37 @@ class LoginViewTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['token'], token.key)
         self.assertEqual(Token.objects.count(), 1)
+        
+
+class RegisterViewTests(APITestCase):
+    pass
+    # create a user
+    def test_register_new_user(self):
+        url = reverse('register')
+        data = {
+            'email': 'user1@mail.de',
+            'password' : 'password1',
+            'username' : 'user1'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
+        user = CustomUser.objects.filter(email=data['email']).first()
+        self.assertIsNotNone(user)
+        self.assertEqual(user.username, data['username'])
+        self.assertTrue(user.check_password(data['password']))
+        
+    # cant create a user with the same email
+    def test_register_no_double_emails(self):
+        
+        user1 = CustomUser.objects.create_user(username='user1', password='password1', email='user1@mail.de')
+        
+        url = reverse('register')
+        data = {
+            'email': 'user1@mail.de',
+            'password' : 'password2',
+            'username' : 'user2'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    
