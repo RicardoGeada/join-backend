@@ -3,6 +3,7 @@ from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework import status
 from users.models import CustomUser
+from tasks.models import Task
 from .models import Contact
 
 # Create your tests here.
@@ -159,4 +160,18 @@ class ContactsAPITests(APITestCase):
         self.assertEqual(Contact.objects.filter(id=self.contact_user.pk).first(), None)
         self.assertEqual(CustomUser.objects.filter(id=self.user.pk).first(), None)
    
-    # test_contact_will_be_deleted_from_task
+    
+    def test_contact_gets_deleted_from_tasks(self):
+        """
+        Ensure the contact gets removed from all assigned tasks when it gets deleted.
+        """
+        task_with_contact = Task.objects.create(status='to-do', description='Test Description', priority=1, due_date='2030-07-22', category='Technical Task')
+        task_with_contact.assigned_to.add(self.contact_user)
+        self.assertIn(self.contact_user, task_with_contact.assigned_to.all())
+        
+        self.contact_user.delete()
+        
+        task_with_contact.refresh_from_db()
+        
+        self.assertEqual(Contact.objects.filter(id=self.contact_user.pk).first(), None)
+        self.assertNotIn(self.contact_user, task_with_contact.assigned_to.all())
