@@ -25,8 +25,7 @@ class ContactsAPITests(APITestCase):
         new_contact = Contact.objects.get(active_user=new_user)
         self.assertEqual(new_contact.name,'newuser')
         self.assertEqual(new_contact.email,'new@mail.com')
-        # self.assertEqual(new_contact.initials,'NU')
-        # self.assertEqual(new_contact.badge_color, 1)
+        
     
     def test_user_can_create_new_contact(self):
         """
