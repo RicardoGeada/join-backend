@@ -31,5 +31,4 @@ class Task(models.Model):
     due_date = models.DateField()
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=20)
     assigned_to = models.ManyToManyField(Contact, related_name='tasks')
-    subtasks = models.JSONField(default=list)
     
