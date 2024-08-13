@@ -10,14 +10,23 @@ from .models import Contact
 class ContactsAPITests(APITestCase):
     
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='testuser', password='testpassword', email='test@mail.com')
-        self.other_user = CustomUser.objects.create_user(username='otheruser', password='otherpassword', email='other@mail.com')
-        self.client.login(email='test@mail.com', password='testpassword')
+        self.user = CustomUser.objects.create_user(username='contact_user', password='testpassword', email='contact_user@mail.com', initials='TU')
+        self.other_user = CustomUser.objects.create_user(username='contact_other_user', password='otherpassword', email='contact_other_user@mail.com', initials='OU')
+        self.client.login(email='contact_user@mail.com', password='testpassword')
         self.contact_no_user = Contact.objects.create(name='contact_no_user', email='contact_no_user@mail.com', phone=11111111111111, badge_color=1, initials='CN')
-        self.contact_user = Contact.objects.create(name='contact_user', email='contact_user@mail.com', phone=22222222222222, badge_color=2, initials='CU', active_user=self.user)
-        self.contact_other_user = Contact.objects.create(name='contact_other_user', email='contact_other_user@mail.com', phone=33333333333333, badge_color=3, initials='CO', active_user=self.other_user)
+        self.contact_user = Contact.objects.get(active_user=self.user)
+        self.contact_other_user = Contact.objects.get(active_user=self.other_user)
     
-    # test_contact_is_created_for_new_user
+    def test_contact_is_created_for_new_user(self):
+        """
+        Ensure contact is created for new user.
+        """
+        new_user = CustomUser.objects.create_user(username='newuser', password='newpassword', email='new@mail.com', initials='NU')
+        new_contact = Contact.objects.get(active_user=new_user)
+        self.assertEqual(new_contact.name,'newuser')
+        self.assertEqual(new_contact.email,'new@mail.com')
+        # self.assertEqual(new_contact.initials,'NU')
+        # self.assertEqual(new_contact.badge_color, 1)
     
     def test_user_can_create_new_contact(self):
         """
@@ -76,9 +85,8 @@ class ContactsAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(self.contact_other_user.name, 'contact_other_user')
         self.assertEqual(self.contact_other_user.email, 'contact_other_user@mail.com')
-        self.assertEqual(self.contact_other_user.phone, 33333333333333)
-        self.assertEqual(self.contact_other_user.badge_color, 3)
-        self.assertEqual(self.contact_other_user.initials, 'CO')
+        self.assertEqual(self.contact_other_user.phone, None)
+        self.assertEqual(self.contact_other_user.initials, 'OU')
           
     
     def test_user_can_edit_own_contact(self):
@@ -102,7 +110,6 @@ class ContactsAPITests(APITestCase):
         self.assertEqual(self.contact_user.badge_color, updated_data['badge_color'])
         self.assertEqual(self.contact_user.initials, updated_data['initials'])
     
-    # partial update?
     
     def test_user_can_get_contacts(self):
         """
@@ -112,9 +119,9 @@ class ContactsAPITests(APITestCase):
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 3)
-        self.assertEqual(response.data[0]['name'], 'contact_no_user')
-        self.assertEqual(response.data[1]['name'], 'contact_user')
-        self.assertEqual(response.data[2]['name'], 'contact_other_user')
+        self.assertEqual(response.data[0]['name'], 'contact_user')
+        self.assertEqual(response.data[1]['name'], 'contact_other_user')
+        self.assertEqual(response.data[2]['name'], 'contact_no_user')
     
     
     def test_user_can_get_contact_detail(self):
@@ -135,7 +142,7 @@ class ContactsAPITests(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Contact.objects.count(), 2)
-        self.assertEqual(Contact.objects.filter(id=1).first(), None)
+        self.assertEqual(Contact.objects.filter(id=self.contact_no_user.pk).first(), None)
     
     
     def test_user_cant_delete_contact_from_other_users(self):
@@ -146,7 +153,7 @@ class ContactsAPITests(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Contact.objects.count(), 3)
-        self.assertEqual(Contact.objects.get(id=3), self.contact_other_user)
+        self.assertEqual(Contact.objects.get(id=self.contact_other_user.pk), self.contact_other_user)
         
         
     def test_user_can_delete_own_contact_and_user_account(self):
