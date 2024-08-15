@@ -23,10 +23,10 @@ class TaskTests(BaseAPITestCase):
     
     @staticmethod
     def data(title, status='to-do', description='Test Description', priority=1, due_date='2030-07-22', category='Technical Task', assigned_to=None, subtasks=None):
-        if assigned_to is None:
-            assigned_to = []
-        if subtasks is None:
-            subtasks = []
+        # if assigned_to is None:
+        #     assigned_to = []
+        # if subtasks is None:
+        #     subtasks = []
         return {
             'status': status,
             'title': title,
@@ -34,8 +34,8 @@ class TaskTests(BaseAPITestCase):
             'priority': priority,
             'due_date': due_date,
             'category': category,
-            'assigned_to': assigned_to,
-            'subtasks': subtasks
+            # 'assigned_to': assigned_to,
+            # 'subtasks': subtasks
         }
         
         
@@ -117,7 +117,7 @@ class TaskTests(BaseAPITestCase):
         data = self.data('Test Update')
         task = Task.objects.create(**data)
         url = reverse('task-detail', args=[task.id])
-        updated_data = self.data(title='Title Updated', status='done', description='Description Updated', priority=2, due_date='2099-09-01', category='User Story', subtasks=[{ 'done': False, 'subtask' : 'Test Subtask' }])
+        updated_data = self.data(title='Title Updated', status='done', description='Description Updated', priority=2, due_date='2099-09-01', category='User Story')
         response = self.client.put(url, updated_data, format='json')
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)

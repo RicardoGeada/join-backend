@@ -10,10 +10,10 @@ from .models import Contact
 class ContactsAPITests(APITestCase):
     
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='contact_user', password='testpassword', email='contact_user@mail.com', initials='TU')
-        self.other_user = CustomUser.objects.create_user(username='contact_other_user', password='otherpassword', email='contact_other_user@mail.com', initials='OU')
+        self.user = CustomUser.objects.create_user(username='contact_user', password='testpassword', email='contact_user@mail.com')
+        self.other_user = CustomUser.objects.create_user(username='contact_other_user', password='otherpassword', email='contact_other_user@mail.com')
         self.client.login(email='contact_user@mail.com', password='testpassword')
-        self.contact_no_user = Contact.objects.create(name='contact_no_user', email='contact_no_user@mail.com', phone=11111111111111, badge_color=1, initials='CN')
+        self.contact_no_user = Contact.objects.create(name='contact_no_user', email='contact_no_user@mail.com', phone=11111111111111, badge_color=1)
         self.contact_user = Contact.objects.get(active_user=self.user)
         self.contact_other_user = Contact.objects.get(active_user=self.other_user)
     
@@ -21,7 +21,7 @@ class ContactsAPITests(APITestCase):
         """
         Ensure contact is created for new user.
         """
-        new_user = CustomUser.objects.create_user(username='newuser', password='newpassword', email='new@mail.com', initials='NU')
+        new_user = CustomUser.objects.create_user(username='newuser', password='newpassword', email='new@mail.com')
         new_contact = Contact.objects.get(active_user=new_user)
         self.assertEqual(new_contact.name,'newuser')
         self.assertEqual(new_contact.email,'new@mail.com')
@@ -37,9 +37,9 @@ class ContactsAPITests(APITestCase):
             'email' : 'contact@mail.de',
             'phone' : 999999999999999,
             'badge_color' : 15,
-            'initials' : 'US'
         }
         response = self.client.post(url, data, format='json')
+        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         contact = Contact.objects.filter(id=response.data['id']).first()
         self.assertEqual(Contact.objects.count(), 4)
@@ -56,7 +56,6 @@ class ContactsAPITests(APITestCase):
             'email' : 'updated.contact1@mail.com',
             'phone' : 123456789,
             'badge_color' : 15,
-            'initials' : 'UC',
         }
         response = self.client.put(url, data=updated_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -65,7 +64,7 @@ class ContactsAPITests(APITestCase):
         self.assertEqual(self.contact_no_user.email, updated_data['email'])
         self.assertEqual(self.contact_no_user.phone, str(updated_data['phone']))
         self.assertEqual(self.contact_no_user.badge_color, updated_data['badge_color'])
-        self.assertEqual(self.contact_no_user.initials, updated_data['initials'])
+        self.assertEqual(self.contact_no_user.initials, 'UC')
       
       
     def test_user_cant_edit_other_user_contact(self):
@@ -78,14 +77,13 @@ class ContactsAPITests(APITestCase):
             'email' : 'updated.contact@mail.com',
             'phone' : 123456789,
             'badge_color' : 15,
-            'initials' : 'UC',
         }
         response = self.client.put(url, data=updated_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(self.contact_other_user.name, 'contact_other_user')
         self.assertEqual(self.contact_other_user.email, 'contact_other_user@mail.com')
         self.assertEqual(self.contact_other_user.phone, None)
-        self.assertEqual(self.contact_other_user.initials, 'OU')
+        self.assertEqual(self.contact_other_user.initials, 'CO')
           
     
     def test_user_can_edit_own_contact(self):
@@ -98,7 +96,6 @@ class ContactsAPITests(APITestCase):
             'email' : 'updated.contact@mail.com',
             'phone' : 123456789,
             'badge_color' : 15,
-            'initials' : 'UC',
         }
         response = self.client.put(url, data=updated_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -107,7 +104,6 @@ class ContactsAPITests(APITestCase):
         self.assertEqual(self.contact_user.email, updated_data['email'])
         self.assertEqual(self.contact_user.phone, str(updated_data['phone']))
         self.assertEqual(self.contact_user.badge_color, updated_data['badge_color'])
-        self.assertEqual(self.contact_user.initials, updated_data['initials'])
     
     
     def test_user_can_get_contacts(self):
