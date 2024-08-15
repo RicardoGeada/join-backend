@@ -6,7 +6,7 @@ from .serializers import SubtaskSerializer
 
 # Create your views here.
 class SubtaskViewSet(viewsets.ModelViewSet):
-    queryset = Subtask.object.all()
+    queryset = Subtask.objects.all()
     serializer_class = SubtaskSerializer
     permission_classes = [IsAuthenticated]
     

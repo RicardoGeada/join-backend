@@ -12,3 +12,7 @@ class Contact(models.Model):
     badge_color = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(15)], default=1)
     active_user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True, related_name='contact') 
     
+    def __str__(self):
+        return self.name
+    
+    
