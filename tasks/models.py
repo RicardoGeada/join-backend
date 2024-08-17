@@ -30,5 +30,5 @@ class Task(models.Model):
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=2)
     due_date = models.DateField()
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=20)
-    assigned_to = models.ManyToManyField(Contact, related_name='tasks')
+    assigned_to = models.ManyToManyField(Contact, related_name='tasks', blank=True)
     

@@ -4,6 +4,7 @@ from rest_framework import status
 from django.urls import reverse
 from users.models import CustomUser
 from .models import Task
+from subtasks.models import Subtask
 
 class TaskModelTest(TestCase):  
     def test_task_model_exists(self):
@@ -23,10 +24,10 @@ class TaskTests(BaseAPITestCase):
     
     @staticmethod
     def data(title, status='to-do', description='Test Description', priority=1, due_date='2030-07-22', category='Technical Task', assigned_to=None, subtasks=None):
-        # if assigned_to is None:
-        #     assigned_to = []
-        # if subtasks is None:
-        #     subtasks = []
+        if assigned_to is None:
+            assigned_to = []
+        if subtasks is None:
+            subtasks = []
         return {
             'status': status,
             'title': title,
@@ -34,9 +35,22 @@ class TaskTests(BaseAPITestCase):
             'priority': priority,
             'due_date': due_date,
             'category': category,
-            # 'assigned_to': assigned_to,
-            # 'subtasks': subtasks
+            'assigned_to': assigned_to,
+            'subtasks': subtasks
         }
+        
+    # createsubtask with assigned_to and subtasks
+    @staticmethod
+    def createTask(**data):
+        assigned_to_data = data.pop('assigned_to', [])
+        subtasks_data = data.pop('subtasks', [])
+        task = Task.objects.create(**data)
+        if assigned_to_data:
+            task.assigned_to.set(assigned_to_data)
+        for subtask_data in subtasks_data:
+            Subtask.objects.create(task=task, **subtask_data) 
+        return task  
+
         
         
     def assertTaskDataEqual(self, response_data, expected_data):
@@ -44,6 +58,16 @@ class TaskTests(BaseAPITestCase):
         if 'id' in resp_data_without_id:
             del resp_data_without_id['id']
         self.assertEqual(resp_data_without_id, expected_data)
+        
+    
+    def assertSubtasksEqual(self, response_subtasks, updated_subtasks):
+        response_subtasks = sorted(response_subtasks, key=lambda x: (x['description'], x['is_done'], x['task']))
+        updated_subtasks = sorted(updated_subtasks, key=lambda x: (x['description'], x['is_done'], x['task']))
+        
+        for subtask in response_subtasks:
+            subtask.pop('id', None)
+            
+        self.assertEqual(response_subtasks, updated_subtasks)
     
     
     def test_create_task(self):
@@ -74,7 +98,7 @@ class TaskTests(BaseAPITestCase):
         # authorized attempt
         self.authenticate()
         data = self.data('Test Get All')
-        Task.objects.create(**data)
+        task = self.createTask(**data)
         url = reverse('task-list')
         response = self.client.get(url, format='json')
         
@@ -95,7 +119,7 @@ class TaskTests(BaseAPITestCase):
         # authorized attempt
         self.authenticate()
         data = self.data('Test Get Detail')
-        task = Task.objects.create(**data)
+        task = self.createTask(**data)
         url = reverse('task-detail', args=[task.id])
         response = self.client.get(url, format='json')
         
@@ -115,13 +139,19 @@ class TaskTests(BaseAPITestCase):
         # authorized attempt
         self.authenticate()  
         data = self.data('Test Update')
-        task = Task.objects.create(**data)
+        task = self.createTask(**data)
         url = reverse('task-detail', args=[task.id])
-        updated_data = self.data(title='Title Updated', status='done', description='Description Updated', priority=2, due_date='2099-09-01', category='User Story')
+        updated_data = self.data(title='Title Updated', status='done', description='Description Updated', priority=2, due_date='2099-09-01', category='User Story', assigned_to=[1], subtasks=[{'task': task.pk,'description': 'Subtask', 'is_done': True}])
         response = self.client.put(url, updated_data, format='json')
-        
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTaskDataEqual(response.data, updated_data)
+        self.assertEqual(response.data['status'], updated_data['status']) # updated
+        self.assertEqual(response.data['title'], updated_data['title']) # updated
+        self.assertEqual(response.data['description'], updated_data['description']) # updated
+        self.assertEqual(response.data['priority'], updated_data['priority']) # updated
+        self.assertEqual(response.data['due_date'], updated_data['due_date']) # updated
+        self.assertEqual(response.data['category'], updated_data['category']) # updated
+        self.assertEqual(response.data['assigned_to'], updated_data['assigned_to']) # updated
+        self.assertSubtasksEqual(response.data['subtasks'], updated_data['subtasks']) # updated
         
         # unauthorized attempt
         self.client.logout()
@@ -136,7 +166,7 @@ class TaskTests(BaseAPITestCase):
         # authorized attempt
         self.authenticate()
         data = self.data('Test Update')
-        task = Task.objects.create(**data)
+        task = self.createTask(**data)
         url = reverse('task-detail', args=[task.id])
         partial_updated_data = {
             'status' : 'done',
@@ -152,7 +182,7 @@ class TaskTests(BaseAPITestCase):
         self.assertEqual(response.data['due_date'], data['due_date']) # not updated
         self.assertEqual(response.data['category'], data['category']) # not updated
         self.assertEqual(response.data['assigned_to'], data['assigned_to']) # not updated
-        self.assertEqual(response.data['subtasks'], data['subtasks']) # not updated
+        self.assertSubtasksEqual(response.data['subtasks'], data['subtasks']) # not updated
         
         # unauthorized attempt
         self.client.logout()
@@ -167,7 +197,7 @@ class TaskTests(BaseAPITestCase):
         # authorized attempt
         self.authenticate()
         data = self.data('Task Delete')
-        task = Task.objects.create(**data)
+        task = self.createTask(**data)
         url = reverse('task-detail', args=[task.id])
         response = self.client.delete(url)
         
@@ -176,7 +206,7 @@ class TaskTests(BaseAPITestCase):
         
         # unauthorized attempt
         self.client.logout()
-        task = Task.objects.create(**data)
+        task = self.createTask(**data)
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
