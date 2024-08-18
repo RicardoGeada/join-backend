@@ -27,4 +27,5 @@ urlpatterns += [
     path('api/', include('tasks.urls')),
     path('api/', include('users.urls')),
     path('api/', include('contacts.urls')),
+    path('api/', include('subtasks.urls')),
 ]

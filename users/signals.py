@@ -8,3 +8,4 @@ import random
 def create_user_contact(sender, instance, created, **kwargs):
     if created:
         Contact.objects.create(name=instance.username, email=instance.email, initials=instance.initials, badge_color=random.randint(1,15), active_user=instance)
+        

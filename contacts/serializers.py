@@ -9,5 +9,6 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'initials', 'email', 'phone', 'badge_color', 'active_user']
         extra_kwargs = {
             'id' : {'read_only' : True},
-            'active_user' : {'read_only' : True}
+            'active_user' : {'read_only' : True},
+            'initials' : {'read_only' : True}
             }
