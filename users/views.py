@@ -7,6 +7,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView
+from rest_framework.authentication import TokenAuthentication
 
 from .serializers import CustomUserSerializer , CustomAuthTokenSerializer, RegisterSerializer
 from .models import CustomUser
@@ -15,6 +16,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     permission_classes = [IsAuthenticated, IsSelfOrReadOnly]
+    authentication_classes = [TokenAuthentication]
     http_method_names = ['get', 'put', 'patch', 'delete', 'head', 'options', 'trace']
     
     def create(self, request, *args, **kwargs):

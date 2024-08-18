@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import  BaseUserManager, AbstractBaseUser, PermissionsMixin
 from .utils import generate_initials
 
-# Create your models here.
-
 class CustomUserManager(BaseUserManager):
     
     def create_user(self, email, password=None, username=None, **extra_fields):
@@ -27,8 +25,6 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=False)
-    # first_name = models.CharField(max_length=100, blank=True, null=True)
-    # last_name = models.CharField(max_length=100, blank=True, null=True)
     initials = models.CharField(max_length=5, blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField(unique=True)
