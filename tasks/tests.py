@@ -25,7 +25,7 @@ class TaskTests(BaseAPITestCase):
     
     
     @staticmethod
-    def data(title, status='to-do', description='Test Description', priority=1, due_date='2030-07-22', category='Technical Task', assigned_to=None, subtasks=None):
+    def data(title='Titel', status='to-do', description='Test Description', priority=1, due_date='2030-07-22', category='Technical Task', assigned_to=None, subtasks=None):
         if assigned_to is None:
             assigned_to = []
         if subtasks is None:
@@ -44,6 +44,9 @@ class TaskTests(BaseAPITestCase):
         
     @staticmethod
     def createTask(**data):
+        """
+        Create a task, set assigned_to and create subtasks.
+        """
         assigned_to_data = data.pop('assigned_to', [])
         subtasks_data = data.pop('subtasks', [])
         task = Task.objects.create(**data)
@@ -55,6 +58,9 @@ class TaskTests(BaseAPITestCase):
 
         
     def assertTaskDataEqual(self, response_data, expected_data):
+        """
+        Check response_data without id equals expected data.
+        """
         resp_data_without_id = response_data.copy()
         if 'id' in resp_data_without_id:
             del resp_data_without_id['id']
@@ -62,6 +68,9 @@ class TaskTests(BaseAPITestCase):
         
     
     def assertSubtasksEqual(self, response_subtasks, updated_subtasks):
+        """
+        Check response_subtasks without ids equal updated_subtasks.
+        """
         response_subtasks = sorted(response_subtasks, key=lambda x: (x['description'], x['is_done'], x['task']))
         updated_subtasks = sorted(updated_subtasks, key=lambda x: (x['description'], x['is_done'], x['task']))
         
