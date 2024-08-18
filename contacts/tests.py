@@ -1,21 +1,27 @@
-from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework import status
 from users.models import CustomUser
 from tasks.models import Task
 from .models import Contact
+from rest_framework.authtoken.models import Token
 
-# Create your tests here.
 class ContactsAPITests(APITestCase):
     
     def setUp(self):
+        # set up users
         self.user = CustomUser.objects.create_user(username='contact_user', password='testpassword', email='contact_user@mail.com')
         self.other_user = CustomUser.objects.create_user(username='contact_other_user', password='otherpassword', email='contact_other_user@mail.com')
-        self.client.login(email='contact_user@mail.com', password='testpassword')
+        
+        # authorization for user
+        self.user_token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.user_token.key)
+        
+        # set up contacts
         self.contact_no_user = Contact.objects.create(name='contact_no_user', email='contact_no_user@mail.com', phone=11111111111111, badge_color=1)
         self.contact_user = Contact.objects.get(active_user=self.user)
         self.contact_other_user = Contact.objects.get(active_user=self.other_user)
+        
     
     def test_contact_is_created_for_new_user(self):
         """
@@ -25,6 +31,7 @@ class ContactsAPITests(APITestCase):
         new_contact = Contact.objects.get(active_user=new_user)
         self.assertEqual(new_contact.name,'newuser')
         self.assertEqual(new_contact.email,'new@mail.com')
+        self.assertEqual(new_contact.initials, 'NE')
         
     
     def test_user_can_create_new_contact(self):
@@ -33,27 +40,49 @@ class ContactsAPITests(APITestCase):
         """
         url = reverse('contact-list')
         data = {
-            'name' : 'contact',
-            'email' : 'contact@mail.de',
+            'name' : 'newcontact',
+            'email' : 'newcontact@mail.com',
             'phone' : 999999999999999,
             'badge_color' : 15,
         }
         response = self.client.post(url, data, format='json')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         contact = Contact.objects.filter(id=response.data['id']).first()
         self.assertEqual(Contact.objects.count(), 4)
-        self.assertEqual(contact.name, 'contact')
+        self.assertEqual(contact.name, 'newcontact')
+        self.assertEqual(contact.email, 'newcontact@mail.com')
+        self.assertEqual(contact.phone, '999999999999999')
+        self.assertEqual(contact.badge_color, 15)
+        
     
+    def test_user_cant_create_contact_for_other_user(self):
+        """
+        Ensure user can't create a new contact for other users.
+        active_user can't be set
+        """
+        url = reverse('contact-list')
+        data = {
+            'name' : 'newcontact',
+            'email' : 'newcontact@mail.com',
+            'active_user' : self.other_user.pk
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        contact = Contact.objects.filter(id=response.data['id']).first()
+        self.assertEqual(contact.name, 'newcontact')
+        self.assertEqual(contact.email, 'newcontact@mail.com')
+        self.assertEqual(contact.active_user, None)
+        self.assertEqual(Contact.objects.filter(active_user=self.other_user).count(), 1)
+        
     
     def test_user_can_edit_contact(self):
         """
-        Ensure user can edit contact.
+        Ensure user can edit contact without a user.
         """
         url = reverse('contact-detail', kwargs={'pk' : self.contact_no_user.pk})
         updated_data = {
-            'name'  : 'updated contact1',
-            'email' : 'updated.contact1@mail.com',
+            'name'  : 'updated contact',
+            'email' : 'updated.contact@mail.com',
             'phone' : 123456789,
             'badge_color' : 15,
         }
@@ -104,6 +133,20 @@ class ContactsAPITests(APITestCase):
         self.assertEqual(self.contact_user.email, updated_data['email'])
         self.assertEqual(self.contact_user.phone, str(updated_data['phone']))
         self.assertEqual(self.contact_user.badge_color, updated_data['badge_color'])
+        
+    
+    def test_user_cant_change_active_user_of_own_contact(self):
+        """
+        Ensure user cant change active_user of own contact.
+        """
+        url = reverse('contact-detail', kwargs={'pk' : self.contact_user.pk})
+        updated_data = {
+            'active_user' : self.other_user.pk
+        }
+        response = self.client.patch(url, data=updated_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.contact_user.refresh_from_db()
+        self.assertEqual(self.contact_user.active_user, self.user)
     
     
     def test_user_can_get_contacts(self):
@@ -153,14 +196,14 @@ class ContactsAPITests(APITestCase):
         
     def test_user_can_delete_own_contact_and_user_account(self):
         """
-        Ensure user can delete own contact and user account.
+        Ensure user can delete own contact and user account together.
         """
         url = reverse('contact-detail', kwargs={'pk' : self.contact_user.pk})
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Contact.objects.count(), 2)
-        self.assertEqual(Contact.objects.filter(id=self.contact_user.pk).first(), None)
-        self.assertEqual(CustomUser.objects.filter(id=self.user.pk).first(), None)
+        self.assertEqual(Contact.objects.filter(id=self.contact_user.pk).first(), None) # no contact
+        self.assertEqual(CustomUser.objects.filter(id=self.user.pk).first(), None) # no user
    
     
     def test_contact_gets_deleted_from_tasks(self):
