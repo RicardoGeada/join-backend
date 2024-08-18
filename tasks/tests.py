@@ -1,6 +1,7 @@
 from django.test import TestCase
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from django.urls import reverse
 from users.models import CustomUser
 from .models import Task
@@ -17,7 +18,8 @@ class BaseAPITestCase(APITestCase):
 
     def authenticate(self):
         self.user = CustomUser.objects.create_user(username='testuser', password='testpassword', email='test@mail.de')
-        self.client.login(email='test@mail.de', password='testpassword')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         
 class TaskTests(BaseAPITestCase):
     
@@ -39,7 +41,7 @@ class TaskTests(BaseAPITestCase):
             'subtasks': subtasks
         }
         
-    # createsubtask with assigned_to and subtasks
+        
     @staticmethod
     def createTask(**data):
         assigned_to_data = data.pop('assigned_to', [])
@@ -51,7 +53,6 @@ class TaskTests(BaseAPITestCase):
             Subtask.objects.create(task=task, **subtask_data) 
         return task  
 
-        
         
     def assertTaskDataEqual(self, response_data, expected_data):
         resp_data_without_id = response_data.copy()
