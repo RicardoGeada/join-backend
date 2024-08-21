@@ -11,6 +11,7 @@ from rest_framework.authentication import TokenAuthentication
 
 from .serializers import CustomUserSerializer , CustomAuthTokenSerializer, RegisterSerializer
 from .models import CustomUser
+from rest_framework import status
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
@@ -33,6 +34,7 @@ class LoginView(ObtainAuthToken):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         return Response({
+            'id' : user.id,
             'token': token.key,
             'email': user.email
         })
@@ -41,3 +43,10 @@ class LoginView(ObtainAuthToken):
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
+    
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "User successfully registered"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

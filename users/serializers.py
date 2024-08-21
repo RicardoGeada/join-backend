@@ -1,6 +1,7 @@
 # serializers.py
 from rest_framework import serializers
 from .models import CustomUser
+from rest_framework.exceptions import ValidationError
 
 from django.contrib.auth import authenticate, get_user_model
 from django.utils.translation import gettext_lazy as _
