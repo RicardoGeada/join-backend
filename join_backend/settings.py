@@ -154,14 +154,14 @@ CORS_ALLOWED_ORIGINS = [
 
 # django-nose
 
-# import collections
-# import collections.abc
-# collections.Callable = collections.abc.Callable
+import collections
+import collections.abc
+collections.Callable = collections.abc.Callable
 
-# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-# NOSE_ARGS = [
-#     '--with-coverage',  
-#     '--cover-package=join_backend,users,contacts,tasks,subtasks',  
-#     '--verbosity=3',
-# ]
+NOSE_ARGS = [
+    '--with-coverage',  
+    '--cover-package=join_backend,users,contacts,tasks,subtasks',  
+    '--verbosity=3',
+]
