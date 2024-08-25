@@ -28,7 +28,7 @@ class SubtaskAPITests(APITestCase):
         url = reverse('subtask-list')
         data = {
             'description' : 'This is a subtask.',
-            'task' : self.task1.id
+            'task' : self.task1.pk
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

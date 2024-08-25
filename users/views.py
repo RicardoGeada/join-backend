@@ -14,6 +14,12 @@ from .models import CustomUser
 from rest_framework import status
 
 class CustomUserViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for handling CRUD operations on CustomUser instances.
+
+    Provides standard CRUD operations with token authentication.
+    Only authenticated users can edit own user data and read other user data.
+    """
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     permission_classes = [IsAuthenticated, IsSelfOrReadOnly]
@@ -26,7 +32,19 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         """
         raise PermissionDenied("Creating new users is not allowed here.")
     
+    
 class LoginView(ObtainAuthToken):
+    """
+    View for handling user authentication and token generation.
+
+    Inherits from ObtainAuthToken to handle token-based authentication.
+
+    Methods:
+        post(request, *args, **kwargs):
+            Authenticates the user with the provided credentials and returns a token.
+            - If authentication is successful, returns user ID, token, and email.
+            - If authentication fails, raises a validation error.
+    """
     def post(self, request, *args, **kwargs):
         serializer = CustomAuthTokenSerializer(data=request.data,
                                            context={'request': request})
@@ -41,6 +59,21 @@ class LoginView(ObtainAuthToken):
         
 
 class RegisterView(CreateAPIView):
+    """
+    View for user registration.
+
+    Provides an endpoint for creating new user accounts.
+
+    Permissions:
+        - `AllowAny`: Allows any user (authenticated or not) to access this endpoint.
+
+    Methods:
+        post(request):
+            Registers a new user with the provided data.
+            - If the registration is successful, returns a success message.
+            - If registration fails (e.g., validation errors), returns error details.
+    """
+
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
     

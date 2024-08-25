@@ -69,6 +69,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.static' ,
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -126,6 +127,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [      
+    BASE_DIR / "static",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -149,14 +154,14 @@ CORS_ALLOWED_ORIGINS = [
 
 # django-nose
 
-import collections
-import collections.abc
-collections.Callable = collections.abc.Callable
+# import collections
+# import collections.abc
+# collections.Callable = collections.abc.Callable
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-NOSE_ARGS = [
-    '--with-coverage',  
-    '--cover-package=join_backend,users,contacts,tasks,subtasks',  
-    '--verbosity=3',
-]
+# NOSE_ARGS = [
+#     '--with-coverage',  
+#     '--cover-package=join_backend,users,contacts,tasks,subtasks',  
+#     '--verbosity=3',
+# ]

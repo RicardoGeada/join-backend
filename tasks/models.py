@@ -3,8 +3,16 @@ from contacts.models import Contact
 
 class Task(models.Model):
     """
-    Task Model
-    Defines the attributes of a task
+    Represents a task with various attributes.
+
+    Attributes:
+        status (str): Current status of the task (choices: 'to-do', 'in-progress', 'await-feedback', 'done').
+        title (str): Title of the task.
+        description (str): Detailed description of the task.
+        priority (int): Priority level (choices: 1 for Urgent, 2 for Medium, 3 for Low).
+        due_date (date): Due date for task completion.
+        category (str): Category of the task (choices: 'Technical Task', 'User Story').
+        assigned_to (ManyToManyField): Contacts assigned to the task.
     """
     PRIORITY_CHOICES = [
         (1, 'Urgent'),

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>contacts package &mdash; join_backend 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="contacts.migrations package" href="contacts.migrations.html" />
+    <link rel="prev" title="users.migrations package" href="users.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            join_backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="join_backend.html">join_backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">users package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">contacts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contacts.migrations.html">contacts.migrations package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.admin">contacts.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.apps">contacts.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contacts.apps.ContactsConfig"><code class="docutils literal notranslate"><span class="pre">ContactsConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.apps.ContactsConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ContactsConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.apps.ContactsConfig.name"><code class="docutils literal notranslate"><span class="pre">ContactsConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.apps.ContactsConfig.ready"><code class="docutils literal notranslate"><span class="pre">ContactsConfig.ready()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.models">contacts.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contacts.models.Contact"><code class="docutils literal notranslate"><span class="pre">Contact</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Contact.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Contact.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.active_user"><code class="docutils literal notranslate"><span class="pre">Contact.active_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.active_user_id"><code class="docutils literal notranslate"><span class="pre">Contact.active_user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.badge_color"><code class="docutils literal notranslate"><span class="pre">Contact.badge_color</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.delete"><code class="docutils literal notranslate"><span class="pre">Contact.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.email"><code class="docutils literal notranslate"><span class="pre">Contact.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.id"><code class="docutils literal notranslate"><span class="pre">Contact.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.initials"><code class="docutils literal notranslate"><span class="pre">Contact.initials</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.name"><code class="docutils literal notranslate"><span class="pre">Contact.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.objects"><code class="docutils literal notranslate"><span class="pre">Contact.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.phone"><code class="docutils literal notranslate"><span class="pre">Contact.phone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.save"><code class="docutils literal notranslate"><span class="pre">Contact.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.models.Contact.tasks"><code class="docutils literal notranslate"><span class="pre">Contact.tasks</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.permissions">contacts.permissions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contacts.permissions.IsOwnContactOrNoUserContact"><code class="docutils literal notranslate"><span class="pre">IsOwnContactOrNoUserContact</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.permissions.IsOwnContactOrNoUserContact.has_object_permission"><code class="docutils literal notranslate"><span class="pre">IsOwnContactOrNoUserContact.has_object_permission()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.serializers">contacts.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contacts.serializers.ContactSerializer"><code class="docutils literal notranslate"><span class="pre">ContactSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.serializers.ContactSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">ContactSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.signals">contacts.signals module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contacts.signals.remove_contact_from_tasks"><code class="docutils literal notranslate"><span class="pre">remove_contact_from_tasks()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.tests">contacts.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contacts.tests.ContactsAPITests"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.setUp"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_contact_gets_deleted_from_tasks"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_contact_gets_deleted_from_tasks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_contact_is_created_for_new_user"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_contact_is_created_for_new_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_can_create_new_contact"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_can_create_new_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_can_delete_contact"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_can_delete_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_can_delete_own_contact_and_user_account"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_can_delete_own_contact_and_user_account()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_can_edit_contact"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_can_edit_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_can_edit_own_contact"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_can_edit_own_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_can_get_contact_detail"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_can_get_contact_detail()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_can_get_contacts"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_can_get_contacts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_cant_change_active_user_of_own_contact"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_cant_change_active_user_of_own_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_cant_create_contact_for_other_user"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_cant_create_contact_for_other_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_cant_delete_contact_from_other_users"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_cant_delete_contact_from_other_users()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.tests.ContactsAPITests.test_user_cant_edit_other_user_contact"><code class="docutils literal notranslate"><span class="pre">ContactsAPITests.test_user_cant_edit_other_user_contact()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.urls">contacts.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts.views">contacts.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contacts.views.ContactViewSet"><code class="docutils literal notranslate"><span class="pre">ContactViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.authentication_classes"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.authentication_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.basename"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.basename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.description"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.detail"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.name"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contacts.views.ContactViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">ContactViewSet.suffix</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contacts">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tasks.html">tasks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subtasks.html">subtasks package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">join_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">contacts package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contacts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contacts-package">
+<h1>contacts package<a class="headerlink" href="#contacts-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contacts.migrations.html">contacts.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contacts.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contacts.migrations.html#module-contacts.migrations.0001_initial">contacts.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contacts.migrations.html#contacts.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contacts.migrations.html#contacts.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="contacts.migrations.html#contacts.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="contacts.migrations.html#contacts.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contacts.migrations.html#module-contacts.migrations.0002_alter_contact_badge_color">contacts.migrations.0002_alter_contact_badge_color module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contacts.migrations.html#contacts.migrations.0002_alter_contact_badge_color.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contacts.migrations.html#contacts.migrations.0002_alter_contact_badge_color.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="contacts.migrations.html#contacts.migrations.0002_alter_contact_badge_color.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contacts.migrations.html#module-contacts.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-contacts.admin">
+<span id="contacts-admin-module"></span><h2>contacts.admin module<a class="headerlink" href="#module-contacts.admin" title="Link to this heading"></a></h2>
+</section>
+<section id="module-contacts.apps">
+<span id="contacts-apps-module"></span><h2>contacts.apps module<a class="headerlink" href="#module-contacts.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="contacts.apps.ContactsConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contacts.apps.</span></span><span class="sig-name descname"><span class="pre">ContactsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/apps.html#ContactsConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.apps.ContactsConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.apps.ContactsConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#contacts.apps.ContactsConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.apps.ContactsConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'contacts'</span></em><a class="headerlink" href="#contacts.apps.ContactsConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.apps.ContactsConfig.ready">
+<span class="sig-name descname"><span class="pre">ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/contacts/apps.html#ContactsConfig.ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.apps.ContactsConfig.ready" title="Link to this definition"></a></dt>
+<dd><p>Override this method in subclasses to run code when Django starts.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-contacts.models">
+<span id="contacts-models-module"></span><h2>contacts.models module<a class="headerlink" href="#module-contacts.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="contacts.models.Contact">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contacts.models.</span></span><span class="sig-name descname"><span class="pre">Contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/models.html#Contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.models.Contact" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Represents a contact with personal information, including name, email, phone number, 
+badge color, and a relationship to an active user.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>name (str): The name of the contact.
+initials (str): The initials of the contact, automatically generated based on the name.
+email (str): The email address of the contact.
+phone (str): The phone number of the contact.
+badge_color (int): An integer representing the badge color, randomly assigned at creation.
+active_user (CustomUser): A one-to-one relationship with the active user associated with this contact.</p>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="contacts.models.Contact.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#contacts.models.Contact.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="contacts.models.Contact.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#contacts.models.Contact.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.active_user">
+<span class="sig-name descname"><span class="pre">active_user</span></span><a class="headerlink" href="#contacts.models.Contact.active_user" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.active_user_id">
+<span class="sig-name descname"><span class="pre">active_user_id</span></span><a class="headerlink" href="#contacts.models.Contact.active_user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.badge_color">
+<span class="sig-name descname"><span class="pre">badge_color</span></span><a class="headerlink" href="#contacts.models.Contact.badge_color" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.models.Contact.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/contacts/models.html#Contact.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.models.Contact.delete" title="Link to this definition"></a></dt>
+<dd><p>Overrides the delete method to ensure that the associated active user is also deleted 
+when a contact is removed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#contacts.models.Contact.email" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#contacts.models.Contact.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.initials">
+<span class="sig-name descname"><span class="pre">initials</span></span><a class="headerlink" href="#contacts.models.Contact.initials" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#contacts.models.Contact.name" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#contacts.models.Contact.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.phone">
+<span class="sig-name descname"><span class="pre">phone</span></span><a class="headerlink" href="#contacts.models.Contact.phone" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.models.Contact.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/contacts/models.html#Contact.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.models.Contact.save" title="Link to this definition"></a></dt>
+<dd><p>Overrides the save method to automatically generate initials based on the name 
+and randomly assign a badge color upon the creation of a new contact.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.models.Contact.tasks">
+<span class="sig-name descname"><span class="pre">tasks</span></span><a class="headerlink" href="#contacts.models.Contact.tasks" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-contacts.permissions">
+<span id="contacts-permissions-module"></span><h2>contacts.permissions module<a class="headerlink" href="#module-contacts.permissions" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="contacts.permissions.IsOwnContactOrNoUserContact">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contacts.permissions.</span></span><span class="sig-name descname"><span class="pre">IsOwnContactOrNoUserContact</span></span><a class="reference internal" href="_modules/contacts/permissions.html#IsOwnContactOrNoUserContact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.permissions.IsOwnContactOrNoUserContact" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
+<p>Custom permission to allow users to edit their own contact information or 
+contacts that do not have an associated active user.</p>
+<dl class="simple">
+<dt>Permissions:</dt><dd><ul class="simple">
+<li><p>Any user can perform safe methods (GET, HEAD, OPTIONS).</p></li>
+<li><p>Only the user associated with the contact (<cite>active_user</cite>) or if the 
+contact has no associated active user (<cite>active_user</cite> is None) can edit the contact.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.permissions.IsOwnContactOrNoUserContact.has_object_permission">
+<span class="sig-name descname"><span class="pre">has_object_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/permissions.html#IsOwnContactOrNoUserContact.has_object_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.permissions.IsOwnContactOrNoUserContact.has_object_permission" title="Link to this definition"></a></dt>
+<dd><p>Check if the user has permission to interact with the given contact object.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request: The HTTP request being processed.
+view: The view handling the request.
+obj: The contact object being accessed.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>bool: True if the request method is safe (GET, HEAD, OPTIONS),</dt><dd><p>or if the user is the <cite>active_user</cite> of the contact,
+or if the contact has no <cite>active_user</cite>. Otherwise, False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-contacts.serializers">
+<span id="contacts-serializers-module"></span><h2>contacts.serializers module<a class="headerlink" href="#module-contacts.serializers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="contacts.serializers.ContactSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contacts.serializers.</span></span><span class="sig-name descname"><span class="pre">ContactSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/serializers.html#ContactSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.serializers.ContactSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for the Contact model, converting instances to/from JSON.</p>
+<dl class="simple">
+<dt>Read-only fields:</dt><dd><ul class="simple">
+<li><p>id: Auto-generated unique identifier.</p></li>
+<li><p>initials: Generated from the name.</p></li>
+<li><p>badge_color: Assigned at creation.</p></li>
+<li><p>active_user: Associated user, if any.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="contacts.serializers.ContactSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/contacts/serializers.html#ContactSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.serializers.ContactSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.serializers.ContactSerializer.Meta.extra_kwargs">
+<span class="sig-name descname"><span class="pre">extra_kwargs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'active_user':</span> <span class="pre">{'read_only':</span> <span class="pre">True},</span> <span class="pre">'badge_color':</span> <span class="pre">{'read_only':</span> <span class="pre">True},</span> <span class="pre">'id':</span> <span class="pre">{'read_only':</span> <span class="pre">True},</span> <span class="pre">'initials':</span> <span class="pre">{'read_only':</span> <span class="pre">True}}</span></em><a class="headerlink" href="#contacts.serializers.ContactSerializer.Meta.extra_kwargs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.serializers.ContactSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'name',</span> <span class="pre">'initials',</span> <span class="pre">'email',</span> <span class="pre">'phone',</span> <span class="pre">'badge_color',</span> <span class="pre">'active_user']</span></em><a class="headerlink" href="#contacts.serializers.ContactSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.serializers.ContactSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#contacts.serializers.ContactSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#contacts.models.Contact" title="contacts.models.Contact"><code class="xref py py-class docutils literal notranslate"><span class="pre">Contact</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-contacts.signals">
+<span id="contacts-signals-module"></span><h2>contacts.signals module<a class="headerlink" href="#module-contacts.signals" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="contacts.signals.remove_contact_from_tasks">
+<span class="sig-prename descclassname"><span class="pre">contacts.signals.</span></span><span class="sig-name descname"><span class="pre">remove_contact_from_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/signals.html#remove_contact_from_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.signals.remove_contact_from_tasks" title="Link to this definition"></a></dt>
+<dd><p>Signal handler that is triggered after a Contact instance is deleted.</p>
+<p>This function removes the deleted contact from all tasks to which it was assigned.</p>
+</dd></dl>
+
+</section>
+<section id="module-contacts.tests">
+<span id="contacts-tests-module"></span><h2>contacts.tests module<a class="headerlink" href="#module-contacts.tests" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contacts.tests.</span></span><span class="sig-name descname"><span class="pre">ContactsAPITests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_contact_gets_deleted_from_tasks">
+<span class="sig-name descname"><span class="pre">test_contact_gets_deleted_from_tasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_contact_gets_deleted_from_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_contact_gets_deleted_from_tasks" title="Link to this definition"></a></dt>
+<dd><p>Ensure the contact gets removed from all assigned tasks when it gets deleted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_contact_is_created_for_new_user">
+<span class="sig-name descname"><span class="pre">test_contact_is_created_for_new_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_contact_is_created_for_new_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_contact_is_created_for_new_user" title="Link to this definition"></a></dt>
+<dd><p>Ensure contact is created for new user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_can_create_new_contact">
+<span class="sig-name descname"><span class="pre">test_user_can_create_new_contact</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_can_create_new_contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_can_create_new_contact" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can create a new contact.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_can_delete_contact">
+<span class="sig-name descname"><span class="pre">test_user_can_delete_contact</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_can_delete_contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_can_delete_contact" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can delete contacts without acitve_user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_can_delete_own_contact_and_user_account">
+<span class="sig-name descname"><span class="pre">test_user_can_delete_own_contact_and_user_account</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_can_delete_own_contact_and_user_account"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_can_delete_own_contact_and_user_account" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can delete own contact and user account together.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_can_edit_contact">
+<span class="sig-name descname"><span class="pre">test_user_can_edit_contact</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_can_edit_contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_can_edit_contact" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can edit contact without a user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_can_edit_own_contact">
+<span class="sig-name descname"><span class="pre">test_user_can_edit_own_contact</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_can_edit_own_contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_can_edit_own_contact" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can edit own contact.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_can_get_contact_detail">
+<span class="sig-name descname"><span class="pre">test_user_can_get_contact_detail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_can_get_contact_detail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_can_get_contact_detail" title="Link to this definition"></a></dt>
+<dd><p>Ensure we can retrieve a contact by id.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_can_get_contacts">
+<span class="sig-name descname"><span class="pre">test_user_can_get_contacts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_can_get_contacts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_can_get_contacts" title="Link to this definition"></a></dt>
+<dd><p>Ensure user receives all contacts.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_cant_change_active_user_of_own_contact">
+<span class="sig-name descname"><span class="pre">test_user_cant_change_active_user_of_own_contact</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_cant_change_active_user_of_own_contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_cant_change_active_user_of_own_contact" title="Link to this definition"></a></dt>
+<dd><p>Ensure user cant change active_user of own contact.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_cant_create_contact_for_other_user">
+<span class="sig-name descname"><span class="pre">test_user_cant_create_contact_for_other_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_cant_create_contact_for_other_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_cant_create_contact_for_other_user" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can’t create a new contact for other users.
+active_user can’t be set</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_cant_delete_contact_from_other_users">
+<span class="sig-name descname"><span class="pre">test_user_cant_delete_contact_from_other_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_cant_delete_contact_from_other_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_cant_delete_contact_from_other_users" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can’t delete contact from other active_user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="contacts.tests.ContactsAPITests.test_user_cant_edit_other_user_contact">
+<span class="sig-name descname"><span class="pre">test_user_cant_edit_other_user_contact</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/tests.html#ContactsAPITests.test_user_cant_edit_other_user_contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.tests.ContactsAPITests.test_user_cant_edit_other_user_contact" title="Link to this definition"></a></dt>
+<dd><p>Ensure user cant edit the contact info of another active user.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-contacts.urls">
+<span id="contacts-urls-module"></span><h2>contacts.urls module<a class="headerlink" href="#module-contacts.urls" title="Link to this heading"></a></h2>
+</section>
+<section id="module-contacts.views">
+<span id="contacts-views-module"></span><h2>contacts.views module<a class="headerlink" href="#module-contacts.views" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contacts.views.</span></span><span class="sig-name descname"><span class="pre">ContactViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/contacts/views.html#ContactViewSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#contacts.views.ContactViewSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<p>ViewSet for managing Contact instances.</p>
+<p>Provides standard CRUD operations with token authentication.
+Only authenticated users can modify their own contacts or unassigned contacts.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.basename">
+<span class="sig-name descname"><span class="pre">basename</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.basename" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.detail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'contacts.permissions.IsOwnContactOrNoUserContact'&gt;]</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Contact:</span> <span class="pre">rgeada&gt;,</span> <span class="pre">&lt;Contact:</span> <span class="pre">Max</span> <span class="pre">Mustermann&gt;,</span> <span class="pre">&lt;Contact:</span> <span class="pre">12&gt;,</span> <span class="pre">&lt;Contact:</span> <span class="pre">Random</span> <span class="pre">Badgefgh&gt;,</span> <span class="pre">&lt;Contact:</span> <span class="pre">sdf</span> <span class="pre">sdf&gt;,</span> <span class="pre">&lt;Contact:</span> <span class="pre">N</span> <span class="pre">Kre&gt;,</span> <span class="pre">&lt;Contact:</span> <span class="pre">gdfg</span> <span class="pre">sdf&gt;]&gt;</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#contacts.views.ContactViewSet.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#contacts.serializers.ContactSerializer" title="contacts.serializers.ContactSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContactSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="contacts.views.ContactViewSet.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#contacts.views.ContactViewSet.suffix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-contacts">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-contacts" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="users.migrations.html" class="btn btn-neutral float-left" title="users.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contacts.migrations.html" class="btn btn-neutral float-right" title="contacts.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Ricardo Geada.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

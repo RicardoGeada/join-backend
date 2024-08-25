@@ -7,6 +7,13 @@ from .serializers import SubtaskSerializer
 
 # Create your views here.
 class SubtaskViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for managing Subtask instances.
+
+    Provides standard CRUD operations with token authentication.
+    Only authenticated users can modify subtasks.
+    """
+    
     queryset = Subtask.objects.all()
     serializer_class = SubtaskSerializer
     permission_classes = [IsAuthenticated]
