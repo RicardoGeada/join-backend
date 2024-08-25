@@ -10,5 +10,6 @@ class ContactSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'id' : {'read_only' : True},
             'active_user' : {'read_only' : True},
-            'initials' : {'read_only' : True}
+            'initials' : {'read_only' : True},
+            'badge_color' : {'read_only' : True},
             }

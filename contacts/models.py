@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from users.models import CustomUser
 from users.utils import generate_initials
+import random
 
 # Create your models here.
 class Contact(models.Model):
@@ -11,7 +12,7 @@ class Contact(models.Model):
     initials = models.CharField(max_length=2, blank=True, null=True)
     email = models.EmailField() 
     phone = models.CharField(max_length=15, blank=True, null=True)
-    badge_color = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(15)], default=1)
+    badge_color = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(14)], blank=True)
     active_user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True, related_name='contact') 
     
     
@@ -20,6 +21,8 @@ class Contact(models.Model):
     
     
     def save(self, *args, **kwargs):
+        if not self.pk:  # only for creation
+            self.badge_color = random.randint(0, 14)
         self.initials = generate_initials(self.name)
         super().save(*args, **kwargs)
     

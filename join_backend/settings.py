@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'subtasks',
     'users',
     'contacts',
-    'corsheaders'
+    'corsheaders',
+    'django_nose',
 ]
 
 MIDDLEWARE = [
@@ -143,4 +144,19 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5501',
+]
+
+
+# django-nose
+
+import collections
+import collections.abc
+collections.Callable = collections.abc.Callable
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',  
+    '--cover-package=join_backend,users,contacts,tasks,subtasks',  
+    '--verbosity=3',
 ]

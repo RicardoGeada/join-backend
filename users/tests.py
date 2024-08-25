@@ -4,12 +4,29 @@ from rest_framework import status
 from django.urls import reverse
 from .models import CustomUser
 from rest_framework.authtoken.models import Token
+from .utils import generate_initials
 
 # Create your tests here.
 class UserModelTest(TestCase):
+    
     def test_user_model_exists(self):
         users = CustomUser.objects.count()
         self.assertEqual(users, 0)
+        
+
+class UtilsTest(TestCase):
+    
+    def test_generate_initials(self):
+        
+        one_letter = generate_initials('j')
+        one_name = generate_initials('johndoe')
+        two_names = generate_initials('John Doe')
+        multiple_names = generate_initials('Johne Frederick Doe')
+        
+        self.assertEqual(one_letter, 'J-')
+        self.assertEqual(one_name, 'JO')
+        self.assertEqual(two_names, 'JD')
+        self.assertEqual(multiple_names, 'JD')
         
 
 class CustomUserViewSetTests(APITestCase): 
