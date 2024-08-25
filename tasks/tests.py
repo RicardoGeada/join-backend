@@ -1,6 +1,7 @@
 from django.test import TestCase
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from django.urls import reverse
 from users.models import CustomUser
 from .models import Task
@@ -17,13 +18,14 @@ class BaseAPITestCase(APITestCase):
 
     def authenticate(self):
         self.user = CustomUser.objects.create_user(username='testuser', password='testpassword', email='test@mail.de')
-        self.client.login(email='test@mail.de', password='testpassword')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         
 class TaskTests(BaseAPITestCase):
     
     
     @staticmethod
-    def data(title, status='to-do', description='Test Description', priority=1, due_date='2030-07-22', category='Technical Task', assigned_to=None, subtasks=None):
+    def data(title='Titel', status='to-do', description='Test Description', priority=1, due_date='2030-07-22', category='Technical Task', assigned_to=None, subtasks=None):
         if assigned_to is None:
             assigned_to = []
         if subtasks is None:
@@ -39,9 +41,12 @@ class TaskTests(BaseAPITestCase):
             'subtasks': subtasks
         }
         
-    # createsubtask with assigned_to and subtasks
+        
     @staticmethod
     def createTask(**data):
+        """
+        Create a task, set assigned_to and create subtasks.
+        """
         assigned_to_data = data.pop('assigned_to', [])
         subtasks_data = data.pop('subtasks', [])
         task = Task.objects.create(**data)
@@ -52,8 +57,10 @@ class TaskTests(BaseAPITestCase):
         return task  
 
         
-        
     def assertTaskDataEqual(self, response_data, expected_data):
+        """
+        Check response_data without id equals expected data.
+        """
         resp_data_without_id = response_data.copy()
         if 'id' in resp_data_without_id:
             del resp_data_without_id['id']
@@ -61,6 +68,9 @@ class TaskTests(BaseAPITestCase):
         
     
     def assertSubtasksEqual(self, response_subtasks, updated_subtasks):
+        """
+        Check response_subtasks without ids equal updated_subtasks.
+        """
         response_subtasks = sorted(response_subtasks, key=lambda x: (x['description'], x['is_done'], x['task']))
         updated_subtasks = sorted(updated_subtasks, key=lambda x: (x['description'], x['is_done'], x['task']))
         

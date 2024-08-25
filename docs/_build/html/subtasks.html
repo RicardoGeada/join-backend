@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>subtasks package &mdash; join_backend 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="subtasks.migrations package" href="subtasks.migrations.html" />
+    <link rel="prev" title="tasks.migrations package" href="tasks.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            join_backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="join_backend.html">join_backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">users package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">contacts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks.html">tasks package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">subtasks package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="subtasks.migrations.html">subtasks.migrations package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks.admin">subtasks.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks.apps">subtasks.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subtasks.apps.SubtasksConfig"><code class="docutils literal notranslate"><span class="pre">SubtasksConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.apps.SubtasksConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">SubtasksConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.apps.SubtasksConfig.name"><code class="docutils literal notranslate"><span class="pre">SubtasksConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks.models">subtasks.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subtasks.models.Subtask"><code class="docutils literal notranslate"><span class="pre">Subtask</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Subtask.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Subtask.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.description"><code class="docutils literal notranslate"><span class="pre">Subtask.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.id"><code class="docutils literal notranslate"><span class="pre">Subtask.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.is_done"><code class="docutils literal notranslate"><span class="pre">Subtask.is_done</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.objects"><code class="docutils literal notranslate"><span class="pre">Subtask.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.task"><code class="docutils literal notranslate"><span class="pre">Subtask.task</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.models.Subtask.task_id"><code class="docutils literal notranslate"><span class="pre">Subtask.task_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks.serializers">subtasks.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subtasks.serializers.SubtaskSerializer"><code class="docutils literal notranslate"><span class="pre">SubtaskSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.serializers.SubtaskSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SubtaskSerializer.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.serializers.SubtaskSerializer.update"><code class="docutils literal notranslate"><span class="pre">SubtaskSerializer.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks.tests">subtasks.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests.setUp"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests.test_subtasks_get_deleted_when_task_gets_deleted"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests.test_subtasks_get_deleted_when_task_gets_deleted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests.test_user_can_create_subtask"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests.test_user_can_create_subtask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests.test_user_can_delete_subtask"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests.test_user_can_delete_subtask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests.test_user_can_edit_subtask"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests.test_user_can_edit_subtask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests.test_user_can_get_subtask_detail"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests.test_user_can_get_subtask_detail()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.tests.SubtaskAPITests.test_user_can_get_subtasks"><code class="docutils literal notranslate"><span class="pre">SubtaskAPITests.test_user_can_get_subtasks()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks.urls">subtasks.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks.views">subtasks.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subtasks.views.SubtaskViewSet"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.authentication_classes"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.authentication_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.basename"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.basename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.description"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.detail"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.name"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtasks.views.SubtaskViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">SubtaskViewSet.suffix</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subtasks">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">join_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">subtasks package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/subtasks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="subtasks-package">
+<h1>subtasks package<a class="headerlink" href="#subtasks-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="subtasks.migrations.html">subtasks.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="subtasks.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subtasks.migrations.html#module-subtasks.migrations.0001_initial">subtasks.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="subtasks.migrations.html#subtasks.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="subtasks.migrations.html#subtasks.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="subtasks.migrations.html#subtasks.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="subtasks.migrations.html#subtasks.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="subtasks.migrations.html#module-subtasks.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-subtasks.admin">
+<span id="subtasks-admin-module"></span><h2>subtasks.admin module<a class="headerlink" href="#module-subtasks.admin" title="Link to this heading"></a></h2>
+</section>
+<section id="module-subtasks.apps">
+<span id="subtasks-apps-module"></span><h2>subtasks.apps module<a class="headerlink" href="#module-subtasks.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="subtasks.apps.SubtasksConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">subtasks.apps.</span></span><span class="sig-name descname"><span class="pre">SubtasksConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/apps.html#SubtasksConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.apps.SubtasksConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.apps.SubtasksConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#subtasks.apps.SubtasksConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.apps.SubtasksConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'subtasks'</span></em><a class="headerlink" href="#subtasks.apps.SubtasksConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-subtasks.models">
+<span id="subtasks-models-module"></span><h2>subtasks.models module<a class="headerlink" href="#module-subtasks.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="subtasks.models.Subtask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">subtasks.models.</span></span><span class="sig-name descname"><span class="pre">Subtask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/models.html#Subtask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.models.Subtask" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Represents a subtask associated with a Task.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>is_done (bool): Indicates whether the subtask is completed. Defaults to False.
+description (str): A brief description of the subtask, with a maximum length of 200 characters.
+task (Task): The task to which this subtask is linked. Deleting the task will delete all its subtasks.</p>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#subtasks.models.Subtask.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#subtasks.models.Subtask.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#subtasks.models.Subtask.description" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#subtasks.models.Subtask.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.is_done">
+<span class="sig-name descname"><span class="pre">is_done</span></span><a class="headerlink" href="#subtasks.models.Subtask.is_done" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#subtasks.models.Subtask.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.task">
+<span class="sig-name descname"><span class="pre">task</span></span><a class="headerlink" href="#subtasks.models.Subtask.task" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.models.Subtask.task_id">
+<span class="sig-name descname"><span class="pre">task_id</span></span><a class="headerlink" href="#subtasks.models.Subtask.task_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-subtasks.serializers">
+<span id="subtasks-serializers-module"></span><h2>subtasks.serializers module<a class="headerlink" href="#module-subtasks.serializers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="subtasks.serializers.SubtaskSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">subtasks.serializers.</span></span><span class="sig-name descname"><span class="pre">SubtaskSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/serializers.html#SubtaskSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.serializers.SubtaskSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for the Subtask model, converting instances to/from JSON.</p>
+<dl class="simple">
+<dt>Methods:</dt><dd><p>update(instance, validated_data): Updates a Subtask instance, excluding ‘task’ from the update.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="subtasks.serializers.SubtaskSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/subtasks/serializers.html#SubtaskSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.serializers.SubtaskSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.serializers.SubtaskSerializer.Meta.extra_kwargs">
+<span class="sig-name descname"><span class="pre">extra_kwargs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'task':</span> <span class="pre">{'required':</span> <span class="pre">False}}</span></em><a class="headerlink" href="#subtasks.serializers.SubtaskSerializer.Meta.extra_kwargs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.serializers.SubtaskSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#subtasks.serializers.SubtaskSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.serializers.SubtaskSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#subtasks.serializers.SubtaskSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#subtasks.models.Subtask" title="subtasks.models.Subtask"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subtask</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.serializers.SubtaskSerializer.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/serializers.html#SubtaskSerializer.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.serializers.SubtaskSerializer.update" title="Link to this definition"></a></dt>
+<dd><p>Update the given Subtask instance with the provided validated data.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>instance (Subtask): The instance to be updated.
+validated_data (dict): Data to update the instance with.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Subtask: The updated Subtask instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-subtasks.tests">
+<span id="subtasks-tests-module"></span><h2>subtasks.tests module<a class="headerlink" href="#module-subtasks.tests" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">subtasks.tests.</span></span><span class="sig-name descname"><span class="pre">SubtaskAPITests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests.test_subtasks_get_deleted_when_task_gets_deleted">
+<span class="sig-name descname"><span class="pre">test_subtasks_get_deleted_when_task_gets_deleted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests.test_subtasks_get_deleted_when_task_gets_deleted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests.test_subtasks_get_deleted_when_task_gets_deleted" title="Link to this definition"></a></dt>
+<dd><p>Ensure subtasks get deleted when task gets deleted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests.test_user_can_create_subtask">
+<span class="sig-name descname"><span class="pre">test_user_can_create_subtask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests.test_user_can_create_subtask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests.test_user_can_create_subtask" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can create a subtask for a task.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests.test_user_can_delete_subtask">
+<span class="sig-name descname"><span class="pre">test_user_can_delete_subtask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests.test_user_can_delete_subtask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests.test_user_can_delete_subtask" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can delete a subtask.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests.test_user_can_edit_subtask">
+<span class="sig-name descname"><span class="pre">test_user_can_edit_subtask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests.test_user_can_edit_subtask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests.test_user_can_edit_subtask" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can edit subtask.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests.test_user_can_get_subtask_detail">
+<span class="sig-name descname"><span class="pre">test_user_can_get_subtask_detail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests.test_user_can_get_subtask_detail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests.test_user_can_get_subtask_detail" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can get specific subtask.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subtasks.tests.SubtaskAPITests.test_user_can_get_subtasks">
+<span class="sig-name descname"><span class="pre">test_user_can_get_subtasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/tests.html#SubtaskAPITests.test_user_can_get_subtasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.tests.SubtaskAPITests.test_user_can_get_subtasks" title="Link to this definition"></a></dt>
+<dd><p>Ensure user can get all subtasks.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-subtasks.urls">
+<span id="subtasks-urls-module"></span><h2>subtasks.urls module<a class="headerlink" href="#module-subtasks.urls" title="Link to this heading"></a></h2>
+</section>
+<section id="module-subtasks.views">
+<span id="subtasks-views-module"></span><h2>subtasks.views module<a class="headerlink" href="#module-subtasks.views" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">subtasks.views.</span></span><span class="sig-name descname"><span class="pre">SubtaskViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/subtasks/views.html#SubtaskViewSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#subtasks.views.SubtaskViewSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<p>ViewSet for managing Subtask instances.</p>
+<p>Provides standard CRUD operations with token authentication.
+Only authenticated users can modify subtasks.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.basename">
+<span class="sig-name descname"><span class="pre">basename</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.basename" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.detail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Subtask:</span> <span class="pre">Subtask</span> <span class="pre">object</span> <span class="pre">(28)&gt;,</span> <span class="pre">&lt;Subtask:</span> <span class="pre">Subtask</span> <span class="pre">object</span> <span class="pre">(42)&gt;,</span> <span class="pre">&lt;Subtask:</span> <span class="pre">Subtask</span> <span class="pre">object</span> <span class="pre">(43)&gt;,</span> <span class="pre">&lt;Subtask:</span> <span class="pre">Subtask</span> <span class="pre">object</span> <span class="pre">(44)&gt;]&gt;</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#subtasks.views.SubtaskViewSet.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#subtasks.serializers.SubtaskSerializer" title="subtasks.serializers.SubtaskSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SubtaskSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="subtasks.views.SubtaskViewSet.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#subtasks.views.SubtaskViewSet.suffix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-subtasks">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-subtasks" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tasks.migrations.html" class="btn btn-neutral float-left" title="tasks.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="subtasks.migrations.html" class="btn btn-neutral float-right" title="subtasks.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Ricardo Geada.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

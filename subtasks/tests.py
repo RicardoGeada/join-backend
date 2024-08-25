@@ -1,10 +1,10 @@
-from django.test import TestCase
 from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
 from .models import Subtask
 from tasks.models import Task
 from users.models import CustomUser
+from rest_framework.authtoken.models import Token
 
 # Create your tests here.
 
@@ -17,9 +17,10 @@ class SubtaskAPITests(APITestCase):
         
         # authenticate
         self.user = CustomUser.objects.create_user(email='user@mail.com', username='user', password='password')
-        self.client.login(email='user@mail.com', password='password')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
 
-    # setup
+    
     def test_user_can_create_subtask(self):
         """
         Ensure user can create a subtask for a task.
@@ -27,7 +28,7 @@ class SubtaskAPITests(APITestCase):
         url = reverse('subtask-list')
         data = {
             'description' : 'This is a subtask.',
-            'task' : self.task1.id
+            'task' : self.task1.pk
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -96,3 +97,21 @@ class SubtaskAPITests(APITestCase):
         
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Subtask.objects.count(), 0)
+        
+    
+    def test_subtasks_get_deleted_when_task_gets_deleted(self):
+        """
+        Ensure subtasks get deleted when task gets deleted.
+        """
+        subtask1 = Subtask.objects.create(task=self.task1, description='Subtask1')
+        subtask2 = Subtask.objects.create(task=self.task1, description='Subtask2')
+        self.assertIn(subtask1 ,self.task1.subtasks.all())
+        self.assertIn(subtask2 ,self.task1.subtasks.all())
+        
+        self.task1.delete()
+        
+        self.assertEqual(Subtask.objects.filter(id=subtask1.pk).first(), None)
+        self.assertEqual(Subtask.objects.filter(id=subtask2.pk).first(), None)
+        self.assertEqual(Subtask.objects.filter(task=self.task1.pk).first(), None)
+        self.assertEqual(Task.objects.filter(pk=self.task1.pk).first(), None)
+        

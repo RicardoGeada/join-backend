@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tasks package &mdash; join_backend 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tasks.migrations package" href="tasks.migrations.html" />
+    <link rel="prev" title="contacts.migrations package" href="contacts.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            join_backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="join_backend.html">join_backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">users package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">contacts package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tasks package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html">tasks.migrations package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks.admin">tasks.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks.apps">tasks.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tasks.apps.TasksConfig"><code class="docutils literal notranslate"><span class="pre">TasksConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.apps.TasksConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">TasksConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.apps.TasksConfig.name"><code class="docutils literal notranslate"><span class="pre">TasksConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks.models">tasks.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tasks.models.Task"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.CATEGORY_CHOICES"><code class="docutils literal notranslate"><span class="pre">Task.CATEGORY_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Task.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Task.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.PRIORITY_CHOICES"><code class="docutils literal notranslate"><span class="pre">Task.PRIORITY_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">Task.STATUS_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.assigned_to"><code class="docutils literal notranslate"><span class="pre">Task.assigned_to</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.category"><code class="docutils literal notranslate"><span class="pre">Task.category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.description"><code class="docutils literal notranslate"><span class="pre">Task.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.due_date"><code class="docutils literal notranslate"><span class="pre">Task.due_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.get_category_display"><code class="docutils literal notranslate"><span class="pre">Task.get_category_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.get_next_by_due_date"><code class="docutils literal notranslate"><span class="pre">Task.get_next_by_due_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.get_previous_by_due_date"><code class="docutils literal notranslate"><span class="pre">Task.get_previous_by_due_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.get_priority_display"><code class="docutils literal notranslate"><span class="pre">Task.get_priority_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.get_status_display"><code class="docutils literal notranslate"><span class="pre">Task.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.id"><code class="docutils literal notranslate"><span class="pre">Task.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.objects"><code class="docutils literal notranslate"><span class="pre">Task.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.priority"><code class="docutils literal notranslate"><span class="pre">Task.priority</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.status"><code class="docutils literal notranslate"><span class="pre">Task.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.subtasks"><code class="docutils literal notranslate"><span class="pre">Task.subtasks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.models.Task.title"><code class="docutils literal notranslate"><span class="pre">Task.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks.serializers">tasks.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tasks.serializers.TaskSerializer"><code class="docutils literal notranslate"><span class="pre">TaskSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.serializers.TaskSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">TaskSerializer.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.serializers.TaskSerializer.create"><code class="docutils literal notranslate"><span class="pre">TaskSerializer.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.serializers.TaskSerializer.update"><code class="docutils literal notranslate"><span class="pre">TaskSerializer.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks.tests">tasks.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tasks.tests.BaseAPITestCase"><code class="docutils literal notranslate"><span class="pre">BaseAPITestCase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.BaseAPITestCase.authenticate"><code class="docutils literal notranslate"><span class="pre">BaseAPITestCase.authenticate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.BaseAPITestCase.setUp"><code class="docutils literal notranslate"><span class="pre">BaseAPITestCase.setUp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks.tests.TaskModelTest"><code class="docutils literal notranslate"><span class="pre">TaskModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskModelTest.test_task_model_exists"><code class="docutils literal notranslate"><span class="pre">TaskModelTest.test_task_model_exists()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks.tests.TaskTests"><code class="docutils literal notranslate"><span class="pre">TaskTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.assertSubtasksEqual"><code class="docutils literal notranslate"><span class="pre">TaskTests.assertSubtasksEqual()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.assertTaskDataEqual"><code class="docutils literal notranslate"><span class="pre">TaskTests.assertTaskDataEqual()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.createTask"><code class="docutils literal notranslate"><span class="pre">TaskTests.createTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.data"><code class="docutils literal notranslate"><span class="pre">TaskTests.data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.test_create_task"><code class="docutils literal notranslate"><span class="pre">TaskTests.test_create_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.test_delete_task"><code class="docutils literal notranslate"><span class="pre">TaskTests.test_delete_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.test_get_task_detail"><code class="docutils literal notranslate"><span class="pre">TaskTests.test_get_task_detail()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.test_get_tasks"><code class="docutils literal notranslate"><span class="pre">TaskTests.test_get_tasks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.test_partial_update_task"><code class="docutils literal notranslate"><span class="pre">TaskTests.test_partial_update_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.tests.TaskTests.test_update_task"><code class="docutils literal notranslate"><span class="pre">TaskTests.test_update_task()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks.urls">tasks.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks.views">tasks.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tasks.views.TaskViewSet"><code class="docutils literal notranslate"><span class="pre">TaskViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.authentication_classes"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.authentication_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.basename"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.basename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.description"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.detail"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.name"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks.views.TaskViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">TaskViewSet.suffix</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tasks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="subtasks.html">subtasks package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">join_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">tasks package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tasks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tasks-package">
+<h1>tasks package<a class="headerlink" href="#tasks-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tasks.migrations.html">tasks.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0001_initial">tasks.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0002_task_status">tasks.migrations.0002_task_status module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0002_task_status.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0002_task_status.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0002_task_status.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0003_task_contacts">tasks.migrations.0003_task_contacts module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0003_task_contacts.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0003_task_contacts.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0003_task_contacts.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0004_remove_task_contacts_remove_task_assigned_to_and_more">tasks.migrations.0004_remove_task_contacts_remove_task_assigned_to_and_more module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0004_remove_task_contacts_remove_task_assigned_to_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0004_remove_task_contacts_remove_task_assigned_to_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0004_remove_task_contacts_remove_task_assigned_to_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0005_remove_task_subtasks">tasks.migrations.0005_remove_task_subtasks module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0005_remove_task_subtasks.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0005_remove_task_subtasks.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0005_remove_task_subtasks.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0006_alter_task_assigned_to">tasks.migrations.0006_alter_task_assigned_to module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0006_alter_task_assigned_to.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0006_alter_task_assigned_to.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0006_alter_task_assigned_to.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0007_alter_task_assigned_to">tasks.migrations.0007_alter_task_assigned_to module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0007_alter_task_assigned_to.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0007_alter_task_assigned_to.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#tasks.migrations.0007_alter_task_assigned_to.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-tasks.admin">
+<span id="tasks-admin-module"></span><h2>tasks.admin module<a class="headerlink" href="#module-tasks.admin" title="Link to this heading"></a></h2>
+</section>
+<section id="module-tasks.apps">
+<span id="tasks-apps-module"></span><h2>tasks.apps module<a class="headerlink" href="#module-tasks.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.apps.TasksConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tasks.apps.</span></span><span class="sig-name descname"><span class="pre">TasksConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/apps.html#TasksConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.apps.TasksConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.apps.TasksConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#tasks.apps.TasksConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.apps.TasksConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tasks'</span></em><a class="headerlink" href="#tasks.apps.TasksConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tasks.models">
+<span id="tasks-models-module"></span><h2>tasks.models module<a class="headerlink" href="#module-tasks.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.models.Task">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tasks.models.</span></span><span class="sig-name descname"><span class="pre">Task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/models.html#Task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.models.Task" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Represents a task with various attributes.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>status (str): Current status of the task (choices: ‘to-do’, ‘in-progress’, ‘await-feedback’, ‘done’).
+title (str): Title of the task.
+description (str): Detailed description of the task.
+priority (int): Priority level (choices: 1 for Urgent, 2 for Medium, 3 for Low).
+due_date (date): Due date for task completion.
+category (str): Category of the task (choices: ‘Technical Task’, ‘User Story’).
+assigned_to (ManyToManyField): Contacts assigned to the task.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.CATEGORY_CHOICES">
+<span class="sig-name descname"><span class="pre">CATEGORY_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('Technical</span> <span class="pre">Task',</span> <span class="pre">'Technical</span> <span class="pre">Task'),</span> <span class="pre">('User</span> <span class="pre">Story',</span> <span class="pre">'User</span> <span class="pre">Story')]</span></em><a class="headerlink" href="#tasks.models.Task.CATEGORY_CHOICES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tasks.models.Task.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#tasks.models.Task.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="tasks.models.Task.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#tasks.models.Task.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.PRIORITY_CHOICES">
+<span class="sig-name descname"><span class="pre">PRIORITY_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[(1,</span> <span class="pre">'Urgent'),</span> <span class="pre">(2,</span> <span class="pre">'Medium'),</span> <span class="pre">(3,</span> <span class="pre">'Low')]</span></em><a class="headerlink" href="#tasks.models.Task.PRIORITY_CHOICES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.STATUS_CHOICES">
+<span class="sig-name descname"><span class="pre">STATUS_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('to-do',</span> <span class="pre">'To</span> <span class="pre">Do'),</span> <span class="pre">('in-progress',</span> <span class="pre">'In</span> <span class="pre">Progress'),</span> <span class="pre">('await-feedback',</span> <span class="pre">'Await</span> <span class="pre">Feedback'),</span> <span class="pre">('done',</span> <span class="pre">'Done')]</span></em><a class="headerlink" href="#tasks.models.Task.STATUS_CHOICES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.assigned_to">
+<span class="sig-name descname"><span class="pre">assigned_to</span></span><a class="headerlink" href="#tasks.models.Task.assigned_to" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.category">
+<span class="sig-name descname"><span class="pre">category</span></span><a class="headerlink" href="#tasks.models.Task.category" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#tasks.models.Task.description" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.due_date">
+<span class="sig-name descname"><span class="pre">due_date</span></span><a class="headerlink" href="#tasks.models.Task.due_date" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.models.Task.get_category_display">
+<span class="sig-name descname"><span class="pre">get_category_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">category&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tasks.models.Task.get_category_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.models.Task.get_next_by_due_date">
+<span class="sig-name descname"><span class="pre">get_next_by_due_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">due_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tasks.models.Task.get_next_by_due_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.models.Task.get_previous_by_due_date">
+<span class="sig-name descname"><span class="pre">get_previous_by_due_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">due_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tasks.models.Task.get_previous_by_due_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.models.Task.get_priority_display">
+<span class="sig-name descname"><span class="pre">get_priority_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.IntegerField:</span> <span class="pre">priority&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tasks.models.Task.get_priority_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.models.Task.get_status_display">
+<span class="sig-name descname"><span class="pre">get_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tasks.models.Task.get_status_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#tasks.models.Task.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#tasks.models.Task.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.priority">
+<span class="sig-name descname"><span class="pre">priority</span></span><a class="headerlink" href="#tasks.models.Task.priority" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#tasks.models.Task.status" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.subtasks">
+<span class="sig-name descname"><span class="pre">subtasks</span></span><a class="headerlink" href="#tasks.models.Task.subtasks" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.models.Task.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#tasks.models.Task.title" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tasks.serializers">
+<span id="tasks-serializers-module"></span><h2>tasks.serializers module<a class="headerlink" href="#module-tasks.serializers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.serializers.TaskSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tasks.serializers.</span></span><span class="sig-name descname"><span class="pre">TaskSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/serializers.html#TaskSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.serializers.TaskSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for the Task model, converting instances to/from JSON.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>assigned_to (PrimaryKeyRelatedField): Optional field for associating multiple Contacts with the Task.
+subtasks (SubtaskSerializer): Optional field for managing nested Subtasks.</p>
+</dd>
+<dt>Methods:</dt><dd><p>create(validated_data): Creates a new Task instance and associated Subtasks.
+update(instance, validated_data): Updates an existing Task instance and associated Subtasks.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.serializers.TaskSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/tasks/serializers.html#TaskSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.serializers.TaskSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.serializers.TaskSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#tasks.serializers.TaskSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.serializers.TaskSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#tasks.serializers.TaskSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#tasks.models.Task" title="tasks.models.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.serializers.TaskSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/serializers.html#TaskSerializer.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.serializers.TaskSerializer.create" title="Link to this definition"></a></dt>
+<dd><p>Create a new Task instance, including nested Subtasks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.serializers.TaskSerializer.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/serializers.html#TaskSerializer.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.serializers.TaskSerializer.update" title="Link to this definition"></a></dt>
+<dd><p>Update an existing Task instance and its associated Subtasks.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tasks.tests">
+<span id="tasks-tests-module"></span><h2>tasks.tests module<a class="headerlink" href="#module-tasks.tests" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.tests.BaseAPITestCase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tasks.tests.</span></span><span class="sig-name descname"><span class="pre">BaseAPITestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#BaseAPITestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.BaseAPITestCase" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.BaseAPITestCase.authenticate">
+<span class="sig-name descname"><span class="pre">authenticate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#BaseAPITestCase.authenticate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.BaseAPITestCase.authenticate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.BaseAPITestCase.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#BaseAPITestCase.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.BaseAPITestCase.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.tests.TaskModelTest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tasks.tests.</span></span><span class="sig-name descname"><span class="pre">TaskModelTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskModelTest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskModelTest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskModelTest.test_task_model_exists">
+<span class="sig-name descname"><span class="pre">test_task_model_exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskModelTest.test_task_model_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskModelTest.test_task_model_exists" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tasks.tests.</span></span><span class="sig-name descname"><span class="pre">TaskTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tasks.tests.BaseAPITestCase" title="tasks.tests.BaseAPITestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAPITestCase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.assertSubtasksEqual">
+<span class="sig-name descname"><span class="pre">assertSubtasksEqual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_subtasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_subtasks</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.assertSubtasksEqual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.assertSubtasksEqual" title="Link to this definition"></a></dt>
+<dd><p>Check response_subtasks without ids equal updated_subtasks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.assertTaskDataEqual">
+<span class="sig-name descname"><span class="pre">assertTaskDataEqual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.assertTaskDataEqual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.assertTaskDataEqual" title="Link to this definition"></a></dt>
+<dd><p>Check response_data without id equals expected data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.createTask">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">createTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.createTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.createTask" title="Link to this definition"></a></dt>
+<dd><p>Create a task, set assigned_to and create subtasks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Titel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'to-do'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Test</span> <span class="pre">Description'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">due_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2030-07-22'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Technical</span> <span class="pre">Task'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assigned_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.test_create_task">
+<span class="sig-name descname"><span class="pre">test_create_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.test_create_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.test_create_task" title="Link to this definition"></a></dt>
+<dd><p>Ensure we can create a new task object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.test_delete_task">
+<span class="sig-name descname"><span class="pre">test_delete_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.test_delete_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.test_delete_task" title="Link to this definition"></a></dt>
+<dd><p>Ensure we can delete a task.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.test_get_task_detail">
+<span class="sig-name descname"><span class="pre">test_get_task_detail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.test_get_task_detail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.test_get_task_detail" title="Link to this definition"></a></dt>
+<dd><p>Ensure we can retrieve a task by id.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.test_get_tasks">
+<span class="sig-name descname"><span class="pre">test_get_tasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.test_get_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.test_get_tasks" title="Link to this definition"></a></dt>
+<dd><p>Ensure we receive all task objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.test_partial_update_task">
+<span class="sig-name descname"><span class="pre">test_partial_update_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.test_partial_update_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.test_partial_update_task" title="Link to this definition"></a></dt>
+<dd><p>Ensure we can partially update a task.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tasks.tests.TaskTests.test_update_task">
+<span class="sig-name descname"><span class="pre">test_update_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/tests.html#TaskTests.test_update_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.tests.TaskTests.test_update_task" title="Link to this definition"></a></dt>
+<dd><p>Ensure we can update a task.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tasks.urls">
+<span id="tasks-urls-module"></span><h2>tasks.urls module<a class="headerlink" href="#module-tasks.urls" title="Link to this heading"></a></h2>
+</section>
+<section id="module-tasks.views">
+<span id="tasks-views-module"></span><h2>tasks.views module<a class="headerlink" href="#module-tasks.views" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tasks.views.</span></span><span class="sig-name descname"><span class="pre">TaskViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tasks/views.html#TaskViewSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tasks.views.TaskViewSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<p>ViewSet for managing Task instances.</p>
+<p>Provides standard CRUD operations with token authentication.
+Only authenticated users can modify tasks.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.basename">
+<span class="sig-name descname"><span class="pre">basename</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.basename" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.detail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Task:</span> <span class="pre">Task</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;Task:</span> <span class="pre">Task</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;Task:</span> <span class="pre">Task</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;Task:</span> <span class="pre">Task</span> <span class="pre">object</span> <span class="pre">(5)&gt;]&gt;</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#tasks.views.TaskViewSet.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#tasks.serializers.TaskSerializer" title="tasks.serializers.TaskSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TaskSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tasks.views.TaskViewSet.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tasks.views.TaskViewSet.suffix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tasks">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tasks" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="contacts.migrations.html" class="btn btn-neutral float-left" title="contacts.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tasks.migrations.html" class="btn btn-neutral float-right" title="tasks.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Ricardo Geada.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
