@@ -58,6 +58,7 @@ Ensure you have the following installed:
     SQLite is configured by default, so you can simply apply the migrations:
 
     ```bash
+    python manage.py makemigrations
     python manage.py migrate
     ```
 
