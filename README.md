@@ -119,4 +119,5 @@ After starting the server, the API will be available at `http://127.0.0.1:8000/`
 To run the test suite:
 
 ```bash
-python manage.py test
+coverage run manage.py test
+coverage report
